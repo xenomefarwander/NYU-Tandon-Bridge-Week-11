@@ -28,23 +28,14 @@ class RBTNode {
     RBTNode<T> *parent, *left, *right;
     T data;
     int color;
-    bool sorted;
 
 public:
-//    RBTNode(RBTNode<T>* right_ptr)
-//            : data(INT_MIN),
-//              color(RED),
-//              parent(nullptr),
-//              left(nullptr),
-//              right(right_ptr) {}
-
     RBTNode(T data)
             : data(data),
               color(RED),
               parent(nullptr),
               left(nullptr),
-              right(nullptr),
-              sorted(false){}
+              right(nullptr){}
 
     friend class RBT<T>;
     void prettyPrint(int indent) const;
@@ -109,7 +100,6 @@ int getColor(RBTNode<T> *node) {
 template <class T>
 class RBT {
     RBTNode<T> *root;
-//    RBTNode<T> *dummy;
     void singleCCR(RBTNode<T> *&point);
     void doubleCR(RBTNode<T> *&point);
     void singleCR(RBTNode<T> *&point);
@@ -117,9 +107,6 @@ class RBT {
 
 public:
     RBT() : root(nullptr){}
-
-    //dummy(new RBTNode<T>(root)
-
     void insert(const T &);
     void insert(const T &, RBTNode<T> *&point, RBTNode<T> *parent);
     void prettyPrint() const { root->prettyPrint(0); }
