@@ -133,10 +133,13 @@ void RBT<T>::singleCR(RBTNode<T> *&point) {
 
     // TODO: ADD ROTATION CODE HERE -- OK DONE
     // RE-ORDER RELATIONS
+
     // turn parent's right subtree into gp's left subtree
-    grandparent->left = parent->right; // x.left = y.right
+    grandparent->left = parent->right;
     if (parent->right != nullptr)
         parent->right->parent = grandparent;
+
+    // point parent to grandparent->parent and vice-versa
     parent->parent = grandparent->parent;
     if (grandparent->parent == nullptr)
         root = parent;
@@ -144,6 +147,8 @@ void RBT<T>::singleCR(RBTNode<T> *&point) {
         grandparent->parent->left = parent;
     else
         grandparent->parent->right = parent;
+
+    //set grandparent as parent's right child
     parent->right = grandparent;
     grandparent->parent = parent;
 
@@ -158,9 +163,13 @@ void RBT<T>::singleCCR(RBTNode<T> *&point) {
     RBTNode<T> *grandparent = point;
     RBTNode<T> *parent = point->right;
     // TODO: ADD ROTATION CODE HERE -- OK DONE
+
+    // turn parent's left subtree into gp's right subtree
     grandparent->right = parent->left;
     if (parent->left != nullptr)
         parent->left->parent = grandparent;
+
+    // point parent to grandparent->parent and vice-versa
     parent->parent = grandparent->parent;
     if (grandparent->parent == nullptr)
         root = parent;
@@ -168,6 +177,8 @@ void RBT<T>::singleCCR(RBTNode<T> *&point) {
         grandparent->parent->left = parent;
     else
         grandparent->parent->right = parent;
+
+    //set grandparent as parent's left child
     parent->left = grandparent;
     grandparent->parent = parent;
 
